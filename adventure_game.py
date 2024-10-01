@@ -261,11 +261,33 @@ def show_inventory():
 #-------------------------------------------------------------------------
 
 def save_game():
-    pass    
+    filename = 'saved_game.txt'
+    try:
+        with open(filename, 'w') as file:
+            file.write(current_room + '\n')
+            file.write(','.join(inventory) + '\n')
+            file.write(','.join(locked_rooms) + '\n')
+            file.write(str(is_game_over) + '\n')
+        print("Game saved to " + filename + ".")
+    except Exception as e:
+        print(f"An error occurred while saving the game: {e}")
+    
 #-------------------------------------------------------------------------
 
 def load_game():
-    pass
+    global current_room, inventory, locked_rooms, is_game_over
+    filename = 'saved_game.txt'
+    try:
+        with open(filename, 'r') as file:
+            current_room = file.readline().strip()
+            inventory = file.readline().strip().split(',') if file.readline().strip() else []
+            locked_rooms = file.readline().strip().split(',') if file.readline().strip() else []
+            is_game_over = file.readline().strip() == 'True'
+        print("Game loaded from " + filename + ". You are in the " + current_room + ".")
+    except FileNotFoundError:
+        print(f"No saved game found at {filename}.")
+    except Exception as e:
+        print(f"An error occurred while loading the game: {e}")
 
 #-------------------------------------------------------------------------
 
