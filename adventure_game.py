@@ -326,12 +326,31 @@ def show_inventory():
 #-------------------------------------------------------------------------
 
 def save_game(self):
-    pass
+    filename='saved_game.txt'
+    with open(filename, 'w') as file:
+        file.write(self.current_room + '\n')
+        file.write(self.rooms + '\n')
+        file.write(self.inventory + '\n')
+        file.write(self.locked_rooms + '\n')
+        file.write(str(self.is_game_over) + '\n')
+        
+    print("Game saved to " + filename + ".")
     
 #-------------------------------------------------------------------------
 
-def load_game():
-    pass
+def load_game(self):
+    filename='saved_game.txt'
+    try:
+        with open(filename, 'r') as file:
+            self.current_room = file.readline().strip()
+            self.rooms = file.readline().strip()
+            self.inventory = file.readline().strip()
+            self.locked_rooms = file.readline().strip()
+            self.is_game_over = file.readline().strip() == 'True'
+            print("Game loaded from " + filename + ". You are in the " + self.current_room + ".")
+
+    except FileNotFoundError:
+        print("No saved game found at " + filename + ".")
 
 #-------------------------------------------------------------------------
 
