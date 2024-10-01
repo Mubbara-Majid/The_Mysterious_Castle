@@ -73,21 +73,14 @@ def puzzle_game2():
     check = True
     print("To proceed, solve this puzzle:")
     puzzle = '''
-    You see three chests in front of you.
-    One contains gold, one contains a trap, and the third contains nothing.
-    Each chest has a clue, but only one clue is true.
-    
-    Chest 1: The gold is in this chest.
-    Chest 2: The trap is in this chest.
-    Chest 3: The gold is not in Chest 1.
-    
-    Which chest contains the gold? (Enter 1, 2, or 3)
+    Arrange the numbers in ascending order:
+    2 3 1 4 8 7 6 5
     '''
     while check:
         print(puzzle)
         answer = input("Your answer: ")
-        if answer == "3":
-            print("Correct! You find the gold, and the door unlocks.")
+        if answer == "1 2 3 4 5 6 7 8":
+            print("Correct! The door unlocks with a soft click.")
             return True
         else:
             print("Wrong answer! Try again.")
