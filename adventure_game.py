@@ -17,7 +17,7 @@ rooms = {
     },
     "secret room": {
         "description": "You are in a secret room with a closet holding a key, locked by an old rusty lock.",
-        "items": ["the secret room key"],
+        "items": ["the sword key"],
         "exits": {"north": "library"},
     },
     "dungeon": {
@@ -260,9 +260,8 @@ def show_inventory():
 
 #-------------------------------------------------------------------------
 
-def save_game(self):
-    pass
-    
+def save_game():
+    pass    
 #-------------------------------------------------------------------------
 
 def load_game():
