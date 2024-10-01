@@ -5,102 +5,46 @@ locked_rooms = ["secret room", "armory", "the grand hall", "throne room", "the e
 # This dict represents all the rooms in castle with there descriptions and 
 # the objects they contains
 rooms = {
-    "entrance" : 
-        {
-            "description" : '''
-            You found yourself at the entrance of a large castle.The hallway is leading to three routes.
-            There was a chest you opened the chest and found an single piece of paper in it and at a corner
-            there was a hammer hanging on the wall.
-            ''',
-            "items" : ['the paper in chest'],
-            "exits" : {"south" : "the grand hall", 
-                    "west" : "library", 
-                    "east" : "dungeon"},
-        },
-    "library" : 
-        {
-            "description" : 
-            '''
-            When you entered in the library you started looking around
-            and luckily found a secret wooden creepy door.But the 
-            door was locked!
-            After examining you found out that the door can be opened with a 4-digit passcode!
-            ''',
-            "items" : ["the strange book" , "piece of cloth"],
-            "exits" : {"east" : "entrance",
-                       "south" : "secret room"},
-        },
-    "secret room" : 
-        {
-            "description": 
-            '''
-            Now you opened THE SECRET DOOR.
-            
-            HMM...LOOKS LIKE A SECRETE ROOM...
-            
-            You walked around the room and found a closet. 
-            You saw a Beautifully embellished KEY from the glass of the closet.
-            The closet was locked with an old rusty lock!
-            ''',
-            "items" : ["the sword key"],
-            "exits" : {"north" : "library"},
-        },
-    "dungeon" : 
-        {
-            "description": 
-            '''
-            You entered a DUNGEON!
-            A new challenge ahead!
-            There was a door when you tried to open there a puzzle game popped out of a wall.
-            ''',
-            "items" : [],
-            "exits" : {"west" : "entrance",
-                       "south" : "armory"},
-        },
-    "armory" : 
-        {
-            "description":
-            '''
-            ARMORY ROOM!
-            As walk around you noticed different armory equipments; 
-            Armors , weapons , tools and accesories and much more!
-            There was a sword laying on top of a self.
-            ''',
-            "items" : ["sword" , "knife"],
-            "exits" : {"north" : "dungeon"},
-        },
-    "the grand hall" : 
-        {
-            "description": 
-            '''
-            THE GRAND HALL
-            At the rear end of the grand hall there was a huge door.
-            LOOKS LIKE THE THRONE ROOM DOOR...........
-            ''',
-            "items" : [],
-            "exits" : {"north" : "entrance",
-                       "south" : "throne room"},
-        },
-    "throne room" : 
-        {
-            "description": 
-            '''
-            THE GREAT THRONE ROOM
-            Sword
-            ''',
-            "items" : [],
-            "exits" : {"north" : "the grand hall",
-                       "south" : "the escape tunnel"},
-        },
-    "the escape tunnel" : 
-        {
-            "description" : 
-            '''
-            You finally escaped!
-            ''',
-            "items" : [],
-            "exits" : {},
-        }
+    "entrance": {
+        "description": "You are at the entrance of a castle, with three routes and a chest containing a paper and a hammer.",
+        "items": ['the paper in chest', 'hammer'],
+        "exits": {"south": "the grand hall", "west": "library", "east": "dungeon"},
+    },
+    "library": {
+        "description": "In the library, you find a seceret door.",
+        "items": ["the strange book", "piece of cloth"],
+        "exits": {"east": "entrance", "south": "secret room"},
+    },
+    "secret room": {
+        "description": "You are in a secret room with a closet holding a key, locked by an old rusty lock.",
+        "items": ["the sword key"],
+        "exits": {"north": "library"},
+    },
+    "dungeon": {
+        "description": "You entered the dungeon, but a door puzzle challenges you.",
+        "items": [],
+        "exits": {"west": "entrance", "south": "armory"},
+    },
+    "armory": {
+        "description": "You are in the armory, surrounded by weapons and armor, with a sword and knife on a shelf.",
+        "items": ["sword", "knife"],
+        "exits": {"north": "dungeon"},
+    },
+    "the grand hall": {
+        "description": "You are in the grand hall, where a huge door leads to the throne room.",
+        "items": [],
+        "exits": {"north": "entrance", "south": "throne room"},
+    },
+    "throne room": {
+        "description": "You stand in the throne room, where a passage leads to an escape tunnel.",
+        "items": [],
+        "exits": {"north": "the grand hall", "south": "the escape tunnel"},
+    },
+    "the escape tunnel": {
+        "description": "You have finally escaped the castle!",
+        "items": [],
+        "exits": {},
+    }
 }
 #-------------------------------------------------------------------------
 
@@ -241,9 +185,7 @@ def use_item(item):
         if item == "the sword key" and current_room == "entrance":
             print(
                 '''
-                The key opened the door with a metallic clunk sound...
-                The door began to open all by itself... 
-                CREAKING AND GROANING...
+                The sword key unlocks the door, and it creaks open slowly.
                 ''')
             inventory.remove(item)
             rooms[current_room]["items"].append(item)
@@ -254,10 +196,7 @@ def use_item(item):
         elif item == "sword" and current_room == "throne room":
             print(
                 '''
-                As the sword slides into the stone slot, ancient gears grind to life, 
-                sending tremors through the floor. Glowing runes illuminate the walls, 
-                and with a deep, resonant thud, a hidden passage reveals itself, 
-                offering a long-forgotten escape route from the castle.
+                You place the sword in the slot, revealing a hidden passage to escape.
                 ''')
             inventory.remove(item)
             rooms[current_room]["items"].append(item)
@@ -267,11 +206,7 @@ def use_item(item):
         elif item == "the paper in chest" and current_room == "library":
             print(
                 '''
-                As the final number of the passcode clicks into place, 
-                a soft whirring sound fills the air. Suddenly, 
-                one of the towering bookshelves shifts aside with a quiet rumble, 
-                revealing a hidden doorway behind it, leading into a secret chamber 
-                long concealed within the library/'s walls.
+                The passcode works! A secret door behind the bookshelf opens.
                 '''
             )
             inventory.remove(item)
